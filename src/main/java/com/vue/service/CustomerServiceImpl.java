@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vue.dao.CustomerDao;
 import com.vue.entity.Customer;
 import com.vue.util.JsonUtil;
+import com.vue.util.Page;
 import com.vue.util.PageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,6 +28,12 @@ public class CustomerServiceImpl implements CustomerService {
     CustomerDao customerDao;
 //    JsonUtil jsonUtil;
 
+
+    @Override
+    public int count() {
+        return customerDao.count();
+    }
+
     public Map<String, String> iterCustomer(Customer customer) {
         Map<String, String> resultMap = new HashMap<>();
         resultMap.put("id", customer.getId().toString());
@@ -38,6 +45,16 @@ public class CustomerServiceImpl implements CustomerService {
         resultMap.put("profession", customer.getProfession());
         resultMap.put("profile", customer.getProfile());
         return resultMap;
+    }
+
+    @Override
+    public String findAllPageMap(Map<String, Integer> pageMap) {
+        return JsonUtil.toJSON(customerDao.findAllPageMap(pageMap));
+    }
+
+    @Override
+    public String findAllPageClass(Page page) {
+        return JsonUtil.toJSON(customerDao.findAllPageClass(page));
     }
 
     @Override

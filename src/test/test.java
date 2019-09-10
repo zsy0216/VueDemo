@@ -8,6 +8,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @PackageName:PACKAGE_NAME
@@ -53,4 +54,20 @@ public class test {
         System.out.println(customerDao.delete(13 ));
     }
 
+    @Test
+    public void testCount(){
+//        Map m = customerDao.count();
+//        System.out.println(m.get("count"));
+
+        System.out.println(customerDao.count());
+    }
+
+    @Test
+    public void testMath(){
+        int count = 8;
+        Integer size =3;
+        double page = Math.ceil(count/size.doubleValue());
+        System.out.println(count/size);
+        System.out.println(page);
+    }
 }

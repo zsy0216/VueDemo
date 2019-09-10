@@ -7,9 +7,12 @@ package com.vue.dao;
  */
 
 import com.vue.entity.Customer;
+import com.vue.util.Page;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Value;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * vue 前端需要的数据：
@@ -37,5 +40,11 @@ public interface CustomerDao {
 
     int update(Customer customer);
 
-    List<Customer> findAllPageSql(Integer pageNo,Integer pageSize);
+    List<Customer> findAllPageSql(@Param(value = "pageNo") Integer pageNo,@Param(value = "pageSize") Integer pageSize);
+
+    List<Customer> findAllPageClass(Page page);
+
+    List<Customer> findAllPageMap(Map<String, Integer> pageMap);
+
+    int count();
 }

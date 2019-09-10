@@ -3,8 +3,20 @@
 
 <mapper namespace="com.vue.dao.CustomerDao">
 
+    <select id="count" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM t_customer
+    </select>
+
+    <select id="findAllPageMap" parameterType="java.util.Map" resultType="com.vue.entity.Customer">
+        SELECT * FROM t_customer LIMIT #{pageNo},#{pageSize}
+    </select>
+
+    <select id="findAllPageClass" resultType="com.vue.entity.Customer" parameterType="com.vue.util.Page">
+        SELECT * FROM t_customer LIMIT #{pageNo},#{pageSize}
+    </select>
+
     <select id="findAllPageSql" parameterType="java.lang.Integer" resultType="com.vue.entity.Customer">
-        SELECT * FROM t_customer LIMIT #{param1},#{param2}
+        SELECT * FROM t_customer LIMIT #{pageNo},#{pageSize}
     </select>
 
     <select id="findAll" resultType="com.vue.entity.Customer">
